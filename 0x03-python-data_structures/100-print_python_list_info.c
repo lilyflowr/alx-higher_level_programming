@@ -3,8 +3,8 @@
 #include <listobject.h>
 
 /**
-* print_python_list_info - prints some basic info about pytohn list
-* @p: python object
+* print_python_list_info - it prints some info about python list
+* @p: python object list
 **/
 
 void print_python_list_info(PyObject *p)
