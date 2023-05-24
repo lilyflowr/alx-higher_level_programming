@@ -1,1 +1,1 @@
-# Solutions to SQL - Introduction
+# Solutions to SQL - Intro

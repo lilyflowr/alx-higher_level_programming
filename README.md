@@ -1,9 +1,6 @@
 # Solutions to Python related tasks
-This repo is for the second sprint of the ALX Software Engineering Programme.
-During this sprint we will be learning and practicing higher level programming languages
-Python is the primary language we are going to be using.
+This repository pertains to the second phase of the ALX Software Engineering Program. In this phase, our focus will be on acquiring knowledge and hands-on experience with advanced programming languages. The primary language we will be utilizing extensively is Python.
 
-Hence, this repo will contain all the solutions I submit for our daily tasks.
 
 ## Author
-Dr. Ehoneah Obed
+Ibinabo Adiela
