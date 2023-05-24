@@ -1,1 +1,1 @@
-# Solution to tasks on conditionals & loops
+# Solution to Alx tasks on conditionals & loops
