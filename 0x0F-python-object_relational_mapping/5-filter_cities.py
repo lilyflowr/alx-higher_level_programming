@@ -1,21 +1,37 @@
 #!/usr/bin/python3
-"""
-Displays all cities of a given state from the
-states table of the database hbtn_0e_4_usa.
-Safe from SQL injections.
-Usage: ./5-filter_cities.py <mysql username> \
-                             <mysql password> \
-                             <database name> \
-                             <state name searched>
-"""
-import sys
-import MySQLdb
+"""Module to list all citis by state"""
+
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
-    c = db.cursor()
-    c.execute("SELECT * FROM `cities` as `c` \
-                INNER JOIN `states` as `s` \
-                   ON `c`.`state_id` = `s`.`id` \
-                ORDER BY `c`.`id`")
-    print(", ".join([ct[2] for ct in c.fetchall() if ct[4] == sys.argv[4]]))
+    from sys import argv
+    import MySQLdb
+
+    uinput = argv[4]
+    db = MySQLdb.connect(
+        host="localhost",
+        user=argv[1],
+        port=3306,
+        passwd=argv[2],
+        db=argv[3]
+    )
+
+    """ create a crsor object """
+    cursor = db.cursor()
+
+    """ write and execute the sql query """
+    query = "SELECT cities.name FROM cities \
+    JOIN states ON cities.state_id = states.id \
+    WHERE states.name = %s ORDER BY cities.id ASC;"
+    cursor.execute(query, (uinput,))
+
+    """ fetch the results of the query """
+    res = cursor.fetchall()
+
+    """ print the results """
+    if res is not None:
+        print(", ".join([row[0] for row in res]))
+
+    # Close cursor
+    cursor.close()
+    # Close the database
+    db.close()

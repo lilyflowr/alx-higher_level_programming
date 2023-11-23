@@ -1,32 +1,35 @@
 #!/usr/bin/python3
-
 """
-Lists all states from the database hbtn_0e_0_usa.
-Usage: ./0-select_states.py <mysql username> \
-                             <mysql password> \
-                             <database name>
+This module is use to connect to a MySQL database and retrieve all records
+from the 'states' table sorted by their IDs in ascending order.
 """
 
+if __name__ == "__main__":
+    from sys import argv
+    import MySQLdb
 
-import sys
-import MySQLdb
+    # Connect to the MySQL database using credentials and database name passed as command-line arguments
+    db = MySQLdb.connect(
+        host="localhost",
+        user=argv[1],
+        port=3306,
+        passwd=argv[2],
+        db=argv[3]
+    )
 
-
-if __name__ == '__main__':
-    db = MySQLdb.connect(user=sys.argv[1],
-                         passwd=sys.argv[2],
-                         db=sys.argv[3],
-                         host='localhost',
-                         port=3306)
-
+    # Create a cursor object to execute SQL queries
     cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    # Execute a SQL query to retrieve all states, sorted in ascending order by their IDs
+    cursor.execute("SELECT * FROM states ORDER BY states.id ASC")
 
-    data = cursor.fetchall()
+    # Fetch all the results of the query
+    res = cursor.fetchall()
 
-    for row in data:
+    # Iterate through the results and print each state
+    for row in res:
         print(row)
 
+    # Close the cursor and the database connection
     cursor.close()
     db.close()
